@@ -2,12 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片中心文字展示</title>
     <style>
-        /* 内联CSS */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /* 设置默认字体 */
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
         .image-container {
+            width: 100%;
+            max-width: 500px; /* 最大宽度 */
+            margin: 20px auto; /* 居中 */
             position: relative;
-            width: 500px; /* 根据图片大小调整 */
         }
 
         #image {
@@ -23,21 +39,56 @@
             transform: translate(-50%, -50%);
             color: white;
             font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+            padding: 10px; /* 内边距 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+
+        .centered-content {
             text-align: center;
-            user-select: none; /* 防止用户选中文字 */
+            margin: 20px 0;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd; /* 边框 */
+            outline: none; /* 点击时不显示轮廓 */
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>一级标题</h1>
+        <h2>二级标题</h2>
+    </header>
+
     <div class="image-container">
-        <img id="image" src="塞尔达.jpg" alt="Your Image">
+        <img id="image" src="塞尔达.jpg" alt="塞尔达">
         <div class="text-overlay" id="textOverlay"></div>
     </div>
-    <input type="text" id="textInput" placeholder="输入文字">
-    <button onclick="updateText()">更新文字</button>
+
+    <div class="centered-content">
+        <input type="text" id="textInput" placeholder="输入文字">
+        <button onclick="updateText()">更新文字</button>
+    </div>
+
+    <footer>
+        <p>版权所有 &copy; 2024</p>
+    </footer>
 
     <script>
-        // 内联JavaScript
         function updateText() {
             var textInput = document.getElementById('textInput');
             var textOverlay = document.getElementById('textOverlay');
@@ -45,7 +96,4 @@
         }
     </script>
 </body>
-<H1>一级标题</H1>
-<H2>二级标题</H2>
-<img id="image" src="塞尔达.jpg" alt="示例图片"/>
 </html>

@@ -1,23 +1,27 @@
-+-------------------+
-| 个性化推荐功能  |
-+-------------------+
-          |
-          v
-+-------------------+
-|    感知易用性     |
-+-------------------+
-          |
-          v
-+-------------------+
-|    感知可用性     |
-+-------------------+
-          |
-          v
-+-------------------+
-|      满意度       |
-+-------------------+
-          |
-          v
-+-------------------+
-| 持续使用意愿      |
-+-------------------+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="chart-container">
+        <!-- Nodes -->
+        <div class="node" id="personalization">个性化推荐功能</div>
+        <div class="node" id="perceivedUsability">感知易用性</div>
+        <div class="node" id="perceivedUsefulness">感知可用性</div>
+        <div class="node" id="satisfaction">满意度</div>
+        <div class="node" id="continuanceIntention">持续使用意愿</div>
+
+        <!-- Arrows -->
+        <div class="arrow" id="arrow1" data-from="personalization" data-to="perceivedUsability"></div>
+        <div class="arrow" id="arrow2" data-from="perceivedUsability" data-to="perceivedUsefulness"></div>
+        <div class="arrow" id="arrow3" data-from="perceivedUsefulness" data-to="satisfaction"></div>
+        <div class="arrow" id="arrow4" data-from="satisfaction" data-to="continuanceIntention"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

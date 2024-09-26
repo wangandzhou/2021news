@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flexbox Card Layout</title>
+<title>Flexbox Card Layout with Background</title>
 <style>
   .card-container {
     display: flex;
@@ -14,13 +14,24 @@
     margin: 10px;
     padding: 20px;
     flex: 1;
+    background-color: #f8f8f8; /* 统一设置背景颜色 */
+  }
+  .card:nth-child(1) {
+    background-color: #ffcccc; /* 为第一个卡片设置背景颜色 */
+  }
+  .card:nth-child(2) {
+    background-color: #ccffcc; /* 为第二个卡片设置背景颜色 */
+  }
+  .card:nth-child(3) {
+    background-color: #ccccff; /* 为第三个卡片设置背景颜色 */
+  }
+  .card:nth-child(4) {
+    background-color: #ffffcc; /* 为第四个卡片设置背景颜色 */
   }
 </style>
-.bgimg{
-    background-image: url(https://ts1.cn.mm.bing.net/th?id=OIP-C.qaDAXWd1VdZMcCVmko4qpgHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2);
-}
 </head>
 <body>
+<div class="card-container">
   <div class="card">内容1</div>
   <div class="card">内容2</div>
   <div class="card">内容3</div>

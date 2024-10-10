@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Dom练习</title>
+</head>
+<body>
+    <h1>JS Dom 练习</h1>
+    <p id="demo">段落内容</p>
+    <p>学习是循序渐进的过程</p>
+    <script>
+        let content = document.getElementById("demp")
+        console.log(content);
+        console.log(content.textContent);
+        content.textContent = "这是由js生成的内容"
+    </script>
+</body>
+</html>

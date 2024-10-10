@@ -6,58 +6,82 @@
     <title>体测成绩计算器</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://source.unsplash.com/featured/?sports');
+            background-size: cover;
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
         h1 {
             text-align: center;
+            color: #1a202c;
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
         }
         input, button {
-            padding: 10px;
-            margin: 5px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
             font-size: 16px;
         }
-        button {
-            cursor: pointer;
+        input {
+            border: 1px solid #d1d5db;
         }
-        button:hover {
+        button {
             background-color: #4CAF50;
             color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
         }
         .results {
             margin-top: 20px;
+            padding: 15px;
+            background: #e2e8f0;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>体测成绩计算器</h1>
-        <div>
-            <label for="sprint">50米跑 (秒):</label>
-            <input type="number" id="sprint" placeholder="输入时间">
-        </div>
-        <div>
-            <label for="longJump">立定跳远 (米):</label>
-            <input type="number" id="longJump" placeholder="输入距离">
-        </div>
-        <div>
-            <label for="pullUps">引体向上 (次):</label>
-            <input type="number" id="pullUps" placeholder="输入次数">
-        </div>
-        <div>
-            <label for="sitUps">仰卧起坐 (次/分钟):</label>
-            <input type="number" id="sitUps" placeholder="输入次数">
-        </div>
-        <button onclick="calculateScores()">计算成绩</button>
+        <form id="fitnessForm">
+            <div>
+                <label for="sprint">50米跑 (秒):</label>
+                <input type="number" id="sprint" placeholder="输入时间">
+            </div>
+            <div>
+                <label for="longJump">立定跳远 (米):</label>
+                <input type="number" id="longJump" placeholder="输入距离">
+            </div>
+            <div>
+                <label for="pullUps">引体向上 (次):</label>
+                <input type="number" id="pullUps" placeholder="输入次数">
+            </div>
+            <div>
+                <label for="sitUps">仰卧起坐 (次/分钟):</label>
+                <input type="number" id="sitUps" placeholder="输入次数">
+            </div>
+            <button type="button" onclick="calculateScores()">计算成绩</button>
+        </form>
         <div class="results" id="results">
             <!-- 结果将在这里显示 -->
         </div>
@@ -80,12 +104,12 @@
             const averageScore = totalScore / Object.keys(scores).length;
 
             const results = `
-                <p>50米跑得分: ${scores.sprint}</p>
-                <p>立定跳远得分: ${scores.longJump}</p>
-                <p>引体向上得分: ${scores.pullUps}</p>
-                <p>仰卧起坐得分: ${scores.sitUps}</p>
-                <p>总分: ${totalScore}</p>
-                <p>平均分: ${averageScore.toFixed(2)}</p>
+                <p><strong>50米跑得分:</strong> ${scores.sprint}</p>
+                <p><strong>立定跳远得分:</strong> ${scores.longJump}</p>
+                <p><strong>引体向上得分:</strong> ${scores.pullUps}</p>
+                <p><strong>仰卧起坐得分:</strong> ${scores.sitUps}</p>
+                <p><strong>总分:</strong> ${totalScore}</p>
+                <p><strong>平均分:</strong> ${averageScore.toFixed(2)}</p>
             `;
 
             document.getElementById('results').innerHTML = results;

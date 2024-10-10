@@ -3,93 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>体测成绩计算器</title>
+    <title>JS Dom练习</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
         h1 {
             text-align: center;
+            color: #4CAF50;
         }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            font-size: 16px;
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-        button {
-            cursor: pointer;
+        #demo {
+            padding: 20px;
+            background-color: white;
+            border-left: 5px solid #4CAF50;
         }
-        button:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .results {
-            margin-top: 20px;
+        .red {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>体测成绩计算器</h1>
-        <div>
-            <label for="sprint">50米跑 (秒):</label>
-            <input type="number" id="sprint" placeholder="输入时间">
-        </div>
-        <div>
-            <label for="longJump">立定跳远 (米):</label>
-            <input type="number" id="longJump" placeholder="输入距离">
-        </div>
-        <div>
-            <label for="pullUps">引体向上 (次):</label>
-            <input type="number" id="pullUps" placeholder="输入次数">
-        </div>
-        <div>
-            <label for="sitUps">仰卧起坐 (次/分钟):</label>
-            <input type="number" id="sitUps" placeholder="输入次数">
-        </div>
-        <button onclick="calculateScores()">计算成绩</button>
-        <div class="results" id="results">
-            <!-- 结果将在这里显示 -->
-        </div>
-    </div>
+    <h1>JS Dom 练习</h1>
+    <p id="demo">段落内容</p>
+    <p>学习是循序渐进的过程</p>
     <script>
-        function calculateScores() {
-            const sprint = parseFloat(document.getElementById('sprint').value) || 0;
-            const longJump = parseFloat(document.getElementById('longJump').value) || 0;
-            const pullUps = parseFloat(document.getElementById('pullUps').value) || 0;
-            const sitUps = parseFloat(document.getElementById('sitUps').value) || 0;
+        // 注意：修正了 getElementById 中的 id 值 "demp" 为 "demo"
+        let content = document.getElementById("demo");
+        console.log(content);
+        console.log(content.textContent);
+        content.textContent = "这是由js生成的内容";
+        content.classList.add("red");
 
-            const scores = {
-                sprint: sprint < 10 ? 100 : Math.max(0, 100 - (sprint - 10) * 10),
-                longJump: longJump > 2 ? 100 : Math.max(0, 50 + (2 - longJump) * 25),
-                pullUps: pullUps > 20 ? 100 : pullUps * 5,
-                sitUps: sitUps > 50 ? 100 : sitUps * 2
-            };
-
-            const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
-            const averageScore = totalScore / Object.keys(scores).length;
-
-            const results = `
-                <p>50米跑得分: ${scores.sprint}</p>
-                <p>立定跳远得分: ${scores.longJump}</p>
-                <p>引体向上得分: ${scores.pullUps}</p>
-                <p>仰卧起坐得分: ${scores.sitUps}</p>
-                <p>总分: ${totalScore}</p>
-                <p>平均分: ${averageScore.toFixed(2)}</p>
-            `;
-
-            document.getElementById('results').innerHTML = results;
-        }
+        // 注意：修正了变量名 "hedder" 为 "header"，并且修正了对 header 的引用
+        let header = document.querySelector('h1');
+        console.log(header);
+        header.style.textAlign = "center";
+        header.style.fontSize = "24px"; // 将字体大小调整为更合理的大小
     </script>
 </body>
 </html>

@@ -48,28 +48,52 @@
             z-index: -1;
         }
 
-        /* 内容样式 */
-        .content {
+        /* 内容容器样式 */
+        #content-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        /* 内容样式 */
+        .content {
+            flex: 0 0 calc(16.666% - 20px); /* 每行6个，减去间距 */
             text-align: center;
             color: white;
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 降低卡片中文字的大小 */
+        .content h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .content p {
+            font-size: 14px;
+            margin: 10px 0 0;
         }
 
         /* 按钮样式 */
         .content button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
+            margin-top: 10px;
         }
 
         .content button:hover {
@@ -88,11 +112,37 @@
         <div id="overlay"></div>
     </div>
 
-    <!-- 内容区域 -->
-    <div class="content">
-        <h1>欢迎来到我的网站</h1>
-        <p>这是一个使用背景视频的示例页面。</p>
-        <button onclick="toggleVideo()">暂停/播放视频</button>
+    <!-- 内容容器 -->
+    <div id="content-container">
+        <!-- 内容区域 -->
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
+        <div class="content">
+            <p>这是一个使用背景视频的示例页面。</p>
+            <button onclick="toggleVideo()">暂停/播放视频</button>
+        </div>
     </div>
 
     <!-- JavaScript 代码 -->

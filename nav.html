@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景视频示例</title>
+    <style>
+        /* 页面样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 视频容器样式 */
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* 视频样式 */
+        #background-video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 滤镜层样式 */
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明的黑色层 */
+            z-index: -1;
+        }
+
+        /* 内容样式 */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* 按钮样式 */
+        .content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .content button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- 视频容器 -->
+    <div id="video-container">
+        <video id="background-video" autoplay loop muted>
+            <source src="https://fd.aigei.com/src/vdo/mp4/8c/8c5b0840c54a4cd5823c0cb80fcb628e.mp4?e=1729788780&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:Ach7H7_PiFkVx4l6HEKkn1p6XUw=" type="video/mp4">
+            您的浏览器不支持视频标签。
+        </video>
+        <!-- 滤镜层 -->
+        <div id="overlay"></div>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <h1>欢迎来到我的网站</h1>
+        <p>这是一个使用背景视频的示例页面。</p>
+        <button onclick="toggleVideo()">暂停/播放视频</button>
+    </div>
+
+    <!-- JavaScript 代码 -->
+    <script>
+        // 获取视频元素
+        const video = document.getElementById('background-video');
+
+        // 切换视频播放状态的函数
+        function toggleVideo() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(1)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "1",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Please install OpenAI SDK first: `npm install openai`\r\n\r\nimport OpenAI from \"openai\";\r\n\r\nconst openai = new OpenAI({\r\n        baseURL: 'https://api.deepseek.com',\r\n        apiKey: \"sk-1ffdd667c2754ccaaca2900eb1208b0d\",\r\n});\r\n\r\nasync function main(message) {\r\n  const completion = await openai.chat.completions.create({\r\n    messages: [{ role: \"system\", content: message }],\r\n    model: \"deepseek-chat\",\r\n  });\r\n\r\n  console.log(completion.choices[0].message.content);\r\n}\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "import OpenAI from \"openai\"; const openai = new OpenAI({  baseURL: \"https://api.deepseek.com\",  apiKey: \"sk-64632232312944acaa23bd2899b09e1b\", }); async function dsllm(message) {  const completion = await openai.chat.completions.create({    messages: [{ role: \"system\", content: message }],    model: \"deepseek-chat\",  });  return completion.choices[0].message.content }"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        }
+    ]
+}

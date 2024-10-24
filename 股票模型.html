@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票购买评估模型</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>股票购买评估模型</h1>
+    <form id="stockForm">
+        <label for="price">股票价格（每股）:</label>
+        <input type="number" id="price" step="0.01" required>
+
+        <label for="eps">每股收益（EPS）:</label>
+        <input type="number" id="eps" step="0.01" required>
+
+        <label for="dividend">每股股息:</label>
+        <input type="number" id="dividend" step="0.01" required>
+
+        <button type="submit">评估</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    document.getElementById('stockForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // 获取输入值
+        const price = parseFloat(document.getElementById('price').value);
+        const eps = parseFloat(document.getElementById('eps').value);
+        const dividend = parseFloat(document.getElementById('dividend').value);
+
+        // 计算市盈率（P/E Ratio）
+        const peRatio = price / eps;
+
+        // 计算股息收益率（Dividend Yield）
+        const dividendYield = (dividend / price) * 100;
+
+        // 评估标准
+        const isUndervalued = peRatio < 15 && dividendYield > 2;
+
+        // 显示结果
+        const resultDiv = document.getElementById('result');
+        if (isUndervalued) {
+            resultDiv.innerHTML = `<p>市盈率（P/E Ratio）: ${peRatio.toFixed(2)}</p>
+                                   <p>股息收益率（Dividend Yield）: ${dividendYield.toFixed(2)}%</p>
+                                   <p><strong>建议：股票可能被低估，值得购买。</strong></p>`;
+        } else {
+            resultDiv.innerHTML = `<p>市盈率（P/E Ratio）: ${peRatio.toFixed(2)}</p>
+                                   <p>股息收益率（Dividend Yield）: ${dividendYield.toFixed(2)}%</p>
+                                   <p><strong>建议：股票可能被高估，不建议购买。</strong></p>`;
+        }
+    });
+</script>
+
+</body>
+</html>

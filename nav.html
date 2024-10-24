@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>背景视频示例</title>
+    <title>融媒体作品开发与制作作业导航</title>
     <style>
         /* 页面样式 */
         body, html {
@@ -63,7 +63,7 @@
 
         /* 内容样式 */
         .content {
-            flex: 0 0 calc(16.666% - 20px); /* 每行6个，减去间距 */
+            flex: 0 0 calc(25% - 20px); /* 每行4个，减去间距 */
             text-align: center;
             color: white;
             background-color: rgba(0, 0, 0, 0.5);
@@ -71,23 +71,20 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-sizing: border-box;
+            transition: transform 0.3s ease, background-color 0.3s ease; /* 添加过渡效果 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
         }
 
         /* 降低卡片中文字的大小 */
-        .content h1 {
-            font-size: 18px;
-            margin: 0;
-        }
-
         .content p {
-            font-size: 14px;
+            font-size: 12px; /* 缩小文字 */
             margin: 10px 0 0;
         }
 
         /* 按钮样式 */
         .content button {
-            padding: 10px 20px;
-            font-size: 14px;
+            padding: 8px 16px; /* 缩小按钮 */
+            font-size: 12px; /* 缩小按钮文字 */
             cursor: pointer;
             background-color: #007BFF;
             color: white;
@@ -98,6 +95,12 @@
 
         .content button:hover {
             background-color: #0056b3;
+        }
+
+        /* 卡片悬停效果 */
+        .content:hover {
+            transform: scale(1.05); /* 放大效果 */
+            background-color: rgba(0, 0, 0, 0.7); /* 加深背景颜色 */
         }
     </style>
 </head>
@@ -115,34 +118,33 @@
     <!-- 内容容器 -->
     <div id="content-container">
         <!-- 内容区域 -->
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        <a href="index.html" target="_blank" class="content">
+            <p>作业1</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        </a>
+        <a href="secondwork.html" target="_blank" class="content">
+            <p>作业2</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        </a>
+        <a href="flex布局练习.html" target="_blank" class="content">
+            <p>作业3</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        </a>
+        <a href="不会哒不会哒.html" target="_blank" class="content">
+            <p>作业4>暂停/播放视频</button>
+        </a>
+        <a href="交互页面.html" target="_blank" class="content">
+            <p>作业5</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        </a>
+        <a href="ds.mjs" target="_blank" class="content">
+            <p>作业6</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
+        </a>
+        <a href="JS语法.html" target="_blank" class="content">
+            <p>作业7</p>
             <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
-        <div class="content">
-            <p>这是一个使用背景视频的示例页面。</p>
-            <button onclick="toggleVideo()">暂停/播放视频</button>
-        </div>
+        </a>
     </div>
 
     <!-- JavaScript 代码 -->

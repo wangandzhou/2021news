@@ -7,12 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
+            width: 90%;
             max-width: 600px;
-            margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -54,6 +58,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
         button:hover {
             background-color: #5a53e0;
@@ -73,6 +78,11 @@
         .result.unhealthy {
             color: red;
             border-color: red;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
         }
     </style>
 </head>

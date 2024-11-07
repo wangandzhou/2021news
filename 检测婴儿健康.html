@@ -81,6 +81,11 @@
         <h1>婴儿健康检测</h1>
         <form id="healthForm">
             <div class="form-group">
+                <label for="age">年龄（月）：</label>
+                <input type="number" id="age" min="1" max="6" required>
+                <div class="error-message" id="ageError"></div>
+            </div>
+            <div class="form-group">
                 <label for="weight">体重（kg）：</label>
                 <input type="number" id="weight" step="0.1" required>
                 <div class="error-message" id="weightError"></div>
@@ -115,6 +120,7 @@
             event.preventDefault();
 
             // 获取输入值
+            const age = parseInt(document.getElementById('age').value);
             const weight = parseFloat(document.getElementById('weight').value);
             const heartRate = parseInt(document.getElementById('heartRate').value);
             const temperature = parseFloat(document.getElementById('temperature').value);
@@ -129,43 +135,133 @@
             let message = '';
 
             // 体重判断
-            if (weight < 3.5 || weight > 8) {
+            let weightMin, weightMax;
+            switch (age) {
+                case 1:
+                    weightMin = 3.2;
+                    weightMax = 6.0;
+                    break;
+                case 2:
+                    weightMin = 4.0;
+                    weightMax = 7.0;
+                    break;
+                case 3:
+                    weightMin = 4.8;
+                    weightMax = 8.0;
+                    break;
+                case 4:
+                    weightMin = 5.4;
+                    weightMax = 8.8;
+                    break;
+                case 5:
+                    weightMin = 5.9;
+                    weightMax = 9.5;
+                    break;
+                case 6:
+                    weightMin = 6.3;
+                    weightMax = 10.2;
+                    break;
+                default:
+                    weightMin = 3.2;
+                    weightMax = 10.2;
+            }
+            if (weight < weightMin || weight > weightMax) {
                 isHealthy = false;
-                message += '体重异常，';
+                message += `体重异常（应在${weightMin}kg到${weightMax}kg之间），`;
                 document.getElementById('weight').classList.add('error');
-                document.getElementById('weightError').textContent = '体重应在3.5kg到8kg之间';
+                document.getElementById('weightError').textContent = `体重应在${weightMin}kg到${weightMax}kg之间`;
             }
 
             // 心率判断
-            if (heartRate < 100 || heartRate > 180) {
+            if (heartRate < 100 || heartRate > 160) {
                 isHealthy = false;
                 message += '心率异常，';
                 document.getElementById('heartRate').classList.add('error');
-                document.getElementById('heartRateError').textContent = '心率应在100到180次/分钟之间';
+                document.getElementById('heartRateError').textContent = '心率应在100到160次/分钟之间';
             }
 
             // 体温判断
-            if (temperature < 36.5 || temperature > 37.5) {
+            if (temperature < 36.1 || temperature > 37.8) {
                 isHealthy = false;
                 message += '体温异常，';
                 document.getElementById('temperature').classList.add('error');
-                document.getElementById('temperatureError').textContent = '体温应在36.5℃到37.5℃之间';
+                document.getElementById('temperatureError').textContent = '体温应在36.1℃到37.8℃之间';
             }
 
             // 头围判断
-            if (headCircumference < 38 || headCircumference > 44) {
+            let headCircumferenceMin, headCircumferenceMax;
+            switch (age) {
+                case 1:
+                    headCircumferenceMin = 35.4;
+                    headCircumferenceMax = 38.4;
+                    break;
+                case 2:
+                    headCircumferenceMin = 37.0;
+                    headCircumferenceMax = 40.2;
+                    break;
+                case 3:
+                    headCircumferenceMin = 38.3;
+                    headCircumferenceMax = 41.5;
+                    break;
+                case 4:
+                    headCircumferenceMin = 39.3;
+                    headCircumferenceMax = 42.6;
+                    break;
+                case 5:
+                    headCircumferenceMin = 40.2;
+                    headCircumferenceMax = 43.6;
+                    break;
+                case 6:
+                    headCircumferenceMin = 41.0;
+                    headCircumferenceMax = 44.5;
+                    break;
+                default:
+                    headCircumferenceMin = 35.4;
+                    headCircumferenceMax = 44.5;
+            }
+            if (headCircumference < headCircumferenceMin || headCircumference > headCircumferenceMax) {
                 isHealthy = false;
-                message += '头围异常，';
+                message += `头围异常（应在${headCircumferenceMin}cm到${headCircumferenceMax}cm之间），`;
                 document.getElementById('headCircumference').classList.add('error');
-                document.getElementById('headCircumferenceError').textContent = '头围应在38cm到44cm之间';
+                document.getElementById('headCircumferenceError').textContent = `头围应在${headCircumferenceMin}cm到${headCircumferenceMax}cm之间`;
             }
 
             // 身长判断
-            if (length < 50 || length > 70) {
+            let lengthMin, lengthMax;
+            switch (age) {
+                case 1:
+                    lengthMin = 50.5;
+                    lengthMax = 58.5;
+                    break;
+                case 2:
+                    lengthMin = 55.0;
+                    lengthMax = 63.0;
+                    break;
+                case 3:
+                    lengthMin = 58.5;
+                    lengthMax = 66.5;
+                    break;
+                case 4:
+                    lengthMin = 61.5;
+                    lengthMax = 69.5;
+                    break;
+                case 5:
+                    lengthMin = 63.5;
+                    lengthMax = 71.5;
+                    break;
+                case 6:
+                    lengthMin = 65.5;
+                    lengthMax = 73.5;
+                    break;
+                default:
+                    lengthMin = 50.5;
+                    lengthMax = 73.5;
+            }
+            if (length < lengthMin || length > lengthMax) {
                 isHealthy = false;
-                message += '身长异常，';
+                message += `身长异常（应在${lengthMin}cm到${lengthMax}cm之间），`;
                 document.getElementById('length').classList.add('error');
-                document.getElementById('lengthError').textContent = '身长应在50cm到70cm之间';
+                document.getElementById('lengthError').textContent = `身长应在${lengthMin}cm到${lengthMax}cm之间`;
             }
 
             // 输出结果

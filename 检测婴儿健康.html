@@ -8,28 +8,71 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f4f4f4;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
         }
         .form-group input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #6c63ff;
+        }
+        .form-group input.error {
+            border-color: #ff6347;
+        }
+        .form-group .error-message {
+            color: #ff6347;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #5a53e0;
         }
         .result {
             margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 4px;
             background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .result.healthy {
+            color: green;
+            border-color: green;
+        }
+        .result.unhealthy {
+            color: red;
+            border-color: red;
         }
     </style>
 </head>
@@ -40,22 +83,27 @@
             <div class="form-group">
                 <label for="weight">体重（kg）：</label>
                 <input type="number" id="weight" step="0.1" required>
+                <div class="error-message" id="weightError"></div>
             </div>
             <div class="form-group">
                 <label for="heartRate">心率（次/分钟）：</label>
                 <input type="number" id="heartRate" required>
+                <div class="error-message" id="heartRateError"></div>
             </div>
             <div class="form-group">
                 <label for="temperature">体温（℃）：</label>
                 <input type="number" id="temperature" step="0.1" required>
+                <div class="error-message" id="temperatureError"></div>
             </div>
             <div class="form-group">
                 <label for="headCircumference">头围（cm）：</label>
                 <input type="number" id="headCircumference" step="0.1" required>
+                <div class="error-message" id="headCircumferenceError"></div>
             </div>
             <div class="form-group">
                 <label for="length">身长（cm）：</label>
                 <input type="number" id="length" step="0.1" required>
+                <div class="error-message" id="lengthError"></div>
             </div>
             <button type="submit">检测健康状况</button>
         </form>
@@ -73,6 +121,9 @@
             const headCircumference = parseFloat(document.getElementById('headCircumference').value);
             const length = parseFloat(document.getElementById('length').value);
 
+            // 清除之前的错误信息
+            clearErrors();
+
             // 健康判断逻辑
             let isHealthy = true;
             let message = '';
@@ -81,42 +132,65 @@
             if (weight < 3.5 || weight > 8) {
                 isHealthy = false;
                 message += '体重异常，';
+                document.getElementById('weight').classList.add('error');
+                document.getElementById('weightError').textContent = '体重应在3.5kg到8kg之间';
             }
 
             // 心率判断
             if (heartRate < 100 || heartRate > 180) {
                 isHealthy = false;
                 message += '心率异常，';
+                document.getElementById('heartRate').classList.add('error');
+                document.getElementById('heartRateError').textContent = '心率应在100到180次/分钟之间';
             }
 
             // 体温判断
             if (temperature < 36.5 || temperature > 37.5) {
                 isHealthy = false;
                 message += '体温异常，';
+                document.getElementById('temperature').classList.add('error');
+                document.getElementById('temperatureError').textContent = '体温应在36.5℃到37.5℃之间';
             }
 
             // 头围判断
             if (headCircumference < 38 || headCircumference > 44) {
                 isHealthy = false;
                 message += '头围异常，';
+                document.getElementById('headCircumference').classList.add('error');
+                document.getElementById('headCircumferenceError').textContent = '头围应在38cm到44cm之间';
             }
 
             // 身长判断
             if (length < 50 || length > 70) {
                 isHealthy = false;
                 message += '身长异常，';
+                document.getElementById('length').classList.add('error');
+                document.getElementById('lengthError').textContent = '身长应在50cm到70cm之间';
             }
 
             // 输出结果
             const resultDiv = document.getElementById('result');
             if (isHealthy) {
                 resultDiv.textContent = '婴儿健康状况良好。';
-                resultDiv.style.color = 'green';
+                resultDiv.classList.add('healthy');
+                resultDiv.classList.remove('unhealthy');
             } else {
                 resultDiv.textContent = '婴儿健康状况存在问题：' + message.slice(0, -1) + '。';
-                resultDiv.style.color = 'red';
+                resultDiv.classList.add('unhealthy');
+                resultDiv.classList.remove('healthy');
             }
         });
+
+        function clearErrors() {
+            const inputs = document.querySelectorAll('.form-group input');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(message => {
+                message.textContent = '';
+            });
+        }
     </script>
 </body>
 </html>

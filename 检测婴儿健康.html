@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婴儿健康检测</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>婴儿健康检测</h1>
+        <form id="healthForm">
+            <div class="form-group">
+                <label for="weight">体重（kg）：</label>
+                <input type="number" id="weight" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="heartRate">心率（次/分钟）：</label>
+                <input type="number" id="heartRate" required>
+            </div>
+            <div class="form-group">
+                <label for="temperature">体温（℃）：</label>
+                <input type="number" id="temperature" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="headCircumference">头围（cm）：</label>
+                <input type="number" id="headCircumference" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="length">身长（cm）：</label>
+                <input type="number" id="length" step="0.1" required>
+            </div>
+            <button type="submit">检测健康状况</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('healthForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // 获取输入值
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heartRate = parseInt(document.getElementById('heartRate').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const headCircumference = parseFloat(document.getElementById('headCircumference').value);
+            const length = parseFloat(document.getElementById('length').value);
+
+            // 健康判断逻辑
+            let isHealthy = true;
+            let message = '';
+
+            // 体重判断
+            if (weight < 3.5 || weight > 8) {
+                isHealthy = false;
+                message += '体重异常，';
+            }
+
+            // 心率判断
+            if (heartRate < 100 || heartRate > 180) {
+                isHealthy = false;
+                message += '心率异常，';
+            }
+
+            // 体温判断
+            if (temperature < 36.5 || temperature > 37.5) {
+                isHealthy = false;
+                message += '体温异常，';
+            }
+
+            // 头围判断
+            if (headCircumference < 38 || headCircumference > 44) {
+                isHealthy = false;
+                message += '头围异常，';
+            }
+
+            // 身长判断
+            if (length < 50 || length > 70) {
+                isHealthy = false;
+                message += '身长异常，';
+            }
+
+            // 输出结果
+            const resultDiv = document.getElementById('result');
+            if (isHealthy) {
+                resultDiv.textContent = '婴儿健康状况良好。';
+                resultDiv.style.color = 'green';
+            } else {
+                resultDiv.textContent = '婴儿健康状况存在问题：' + message.slice(0, -1) + '。';
+                resultDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

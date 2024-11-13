@@ -16,4 +16,4 @@ async function main(message) {
   console.log(completion.choices[0].message.content);
 }
 
-main("请进行数据分析，推荐出中国股市中你认为最具增长潜力的五只股票");
+main("请解析出“股票代码.py”的运行逻辑");

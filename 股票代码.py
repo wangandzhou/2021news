@@ -153,3 +153,33 @@ ax2.set_title("Predicted AAPL Stock Price")
 mpf.plot(predicted_df, type='candle', ax=ax2)
 
 plt.show()
+from flask import Flask, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/api/predicted-prices', methods=['GET'])
+def get_predicted_prices():
+    # 假设你已经运行了Python代码并保存了预测结果
+    predicted_df = pd.read_csv('predicted_prices.csv')
+    return jsonify(predicted_df.to_dict(orient='records'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    from bokeh.plotting import figure, show
+from bokeh.io import output_file
+from bokeh.models import ColumnDataSource
+import pandas as pd
+
+# 假设你已经运行了Python代码并保存了预测结果
+predicted_df = pd.read_csv('predicted_prices.csv')
+
+# 创建Bokeh图表
+output_file("predicted_prices.html")
+
+source = ColumnDataSource(predicted_df)
+
+p = figure(title="Predicted AAPL Stock Price", x_axis_label='Date', y_axis_label='Price')
+p.line(x='Date', y='Close', source=source, line_width=2)
+
+show(p)

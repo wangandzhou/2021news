@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Price Prediction</h1>
+    <div class="chart-container">
+        <canvas id="predicted-chart"></canvas>
+    </div>
+
+    <script>
+        // 从Flask后端获取数据
+        fetch('/api/predicted-prices')
+            .then(response => response.json())
+            .then(data => {
+                // 创建预测价格的图表
+                var predictedChart = new Chart(document.getElementById('predicted-chart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d.Date),
+                        datasets: [{
+                            label: 'Predicted Prices',
+                            data: data.map(d => d.Close),
+                            borderColor: 'green',
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Predicted AAPL Stock Price'
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>

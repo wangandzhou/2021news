@@ -16,4 +16,4 @@ async function main(message) {
   console.log(completion.choices[0].message.content);
 }
 
-main("请解析出“股票代码.py”的运行逻辑");
+main("请说出我的想法");

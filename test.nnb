@@ -21,6 +21,13 @@
             ]
         },
         {
+            "language": "markdown",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
             "language": "typescript",
             "source": [
                 "// Please install OpenAI SDK first: `npm install openai`\r\n\r\nimport OpenAI from \"openai\";\r\n\r\nconst openai = new OpenAI({\r\n        baseURL: 'https://api.deepseek.com',\r\n        apiKey: \"sk-1ffdd667c2754ccaaca2900eb1208b0d\",\r\n});\r\n\r\nasync function main(message) {\r\n  const completion = await openai.chat.completions.create({\r\n    messages: [{ role: \"system\", content: message }],\r\n    model: \"deepseek-chat\",\r\n  });\r\n\r\n  console.log(completion.choices[0].message.content);\r\n}\r\n"

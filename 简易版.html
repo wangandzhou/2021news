@@ -193,13 +193,12 @@
     <script>
         // 模拟新闻数据
         const newsData = [
-            { title: "新闻标题1", content: "这是新闻内容1。" },
-            { title: "新闻标题2", content: "这是新闻内容2。" },
-            { title: "新闻标题3", content: "这是新闻内容3。" },
-            { title: "新闻标题4", content: "这是新闻内容4。" },
-            { title: "新闻标题5", content: "这是新闻内容5。" }
+            { title: "新闻标题1", content: '<a href="https://example.com/news1" target="_blank">这是新闻内容1。</a>' },
+            { title: "新闻标题2", content: '<a href="https://example.com/news2" target="_blank">这是新闻内容2。</a>' },
+            { title: "新闻标题3", content: '<a href="https://example.com/news3" target="_blank">这是新闻内容3。</a>' },
+            { title: "新闻标题4", content: '<a href="https://example.com/news4" target="_blank">这是新闻内容4。</a>' },
+            { title: "新闻标题5", content: '<a href="https://example.com/news5" target="_blank">这是新闻内容5。</a>' }
         ];
-
         // 动态加载新闻内容
         function loadNews() {
             const newsList = document.getElementById('news-list');
